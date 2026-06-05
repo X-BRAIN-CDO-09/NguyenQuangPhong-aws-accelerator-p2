@@ -13,7 +13,7 @@ Chạy từ folder `cloud/w8/day-d/challenge`:
 
 ```bash
 terraform init
-terraform apply -auto-approve
+terraform apply
 ```
 
 Lấy URL ALB:
@@ -25,7 +25,7 @@ curl http://$(terraform output -raw alb_dns)
 Destroy:
 
 ```bash
-terraform destroy -auto-approve
+terraform destroy
 ```
 
 ## Bằng Chứng
