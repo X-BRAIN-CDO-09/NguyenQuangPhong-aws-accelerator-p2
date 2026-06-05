@@ -1,0 +1,8 @@
+# Used to store configuration settings separately from code
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-settings
+data:
+  APP_ENV: "development"
+  LOG_LEVEL: "debug"

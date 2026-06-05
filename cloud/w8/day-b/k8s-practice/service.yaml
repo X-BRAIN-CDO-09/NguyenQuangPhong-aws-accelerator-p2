@@ -1,0 +1,13 @@
+# Expose Pods so can visit the website
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-web-service
+spec:
+  selector:
+    app: web
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: NodePort # Exposes the service on a random port on each node

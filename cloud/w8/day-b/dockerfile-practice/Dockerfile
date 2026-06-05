@@ -28,5 +28,5 @@ CMD [ "npm", "start" ]
 # EXPOSE — declare the port the app uses. It's documentation only and doesn't open the port (you still need -p at run).
 # CMD — the default command to run when the container starts (runs at run time, not at build time).
 
-# Afterwards, build the app using `docker build -t demo:v1`
-# Then run it using `docker run --rm -p 3000:3000 demo:v1`
+# Afterwards, build the app using `docker build -t demo:week8dayB .`
+# Then run it using `docker run --rm -p 3000:3000 demo:week8dayB`
