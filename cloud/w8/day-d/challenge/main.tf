@@ -29,7 +29,11 @@ data "cloudinit_config" "bootstrap" {
   part {
     content_type = "text/x-shellscript"
     content = templatefile("${path.module}/bootstrap.sh", {
-      node_port = var.node_port
+      node_port        = var.node_port
+      deployment_yaml  = file("${path.module}/app/deployment.yaml")
+      service_yaml     = templatefile("${path.module}/app/service.yaml", {
+        node_port = var.node_port
+      })
     })
   }
 }

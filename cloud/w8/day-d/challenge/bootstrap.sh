@@ -77,54 +77,11 @@ systemctl daemon-reload
 systemctl enable --now minikube.service socat-nodeport.service
 
 cat > /tmp/deployment.yaml << 'YAML'
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: my-app
-  labels:
-    app: my-app
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: my-app
-  template:
-    metadata:
-      labels:
-        app: my-app
-    spec:
-      containers:
-        - name: web
-          image: nginx:alpine
-          ports:
-            - containerPort: 80
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 80
-            initialDelaySeconds: 5
-            periodSeconds: 10
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 80
-            initialDelaySeconds: 3
-            periodSeconds: 5
+${deployment_yaml}
 YAML
 
 cat > /tmp/service.yaml << 'YAML'
-apiVersion: v1
-kind: Service
-metadata:
-  name: my-app
-spec:
-  type: NodePort
-  selector:
-    app: my-app
-  ports:
-    - port: 80
-      targetPort: 80
-      nodePort: ${node_port}
+${service_yaml}
 YAML
 
 kubectl apply -f /tmp/deployment.yaml
