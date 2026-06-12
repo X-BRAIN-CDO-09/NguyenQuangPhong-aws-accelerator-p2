@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - deployment.yaml
+  - service.yaml
+
+namespace: kustomized-my-app-ns
+
+commonLabels:
+  app: my-app-metrics
+
+commonAnnotations:
+  managed-by: kustomize
+  team: my-team
+
+namePrefix: metrics-
+nameSuffix: -v1

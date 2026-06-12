@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-rules
+data:
+  slo-rules.yaml: |
+    groups:
+      - name: slo-alerts
+        rules:
+          - alert: HighErrorRate
+            expr: |
+              rate(nginx_http_requests_total{status=~"5.."}[5m])
+                / rate(nginx_http_requests_total[5m]) > 0.01
+            for: 5m
+            labels:
+              severity: critical
+            annotations:
+              summary: "High error rate detected"
+              description: "Error rate is above 1% for the last 5 minutes"
+
+      - alert: BurnRateFast
+        expr: |
+          (1 - (
+            rate(nginx_http_requests_total{status=~"2..|3.."}[1h])
+              / rate(nginx_http_requests_total[1h])
+          )) > 0.001 * 14.4
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Fast burn rate: SLO budget burning too fast"
+
+      - alert: BurnRateSlow
+        expr: |
+          (1 - (
+            rate(nginx_http_requests_total{status=~"2..|3.."}[6h])
+              / rate(nginx_http_requests_total[6h])
+          )) > 0.001 * 6
+        for: 30m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Slow burn rate: SLO budget burning steadily"
