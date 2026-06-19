@@ -1,0 +1,12 @@
+Meeting Notes - Q3 Planning
+============================
+Attendees: John (john.doe@example.com), Sarah (sarah.d@company.com)
+
+Action Items:
+- Process payroll adjustments for employee SSNs: 123-45-6789, 987-65-4321
+- Update billing system with card ending in 1111
+- Send follow-up to alice.w@sample.com regarding account #6011-1111-1111-1117
+
+Notes:
+Contact charlie.b@example.org about the new vendor agreement.
+Credit line increase approved for account 3782-8224-6310-0005.
